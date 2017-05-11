@@ -113,9 +113,10 @@
 			$classNamespace = 'app\\controllers\\'.$className;
 
 			if( class_exists($classNamespace) ){
+				App::setController($className);
 				$object = new $classNamespace;
-
 				if( method_exists($classNamespace, $methodName) ){
+					App::setAction($methodName);
 					call_user_func_array([$object,$methodName], $params);
 				}else{
 					die('Method "'.$methodName.'" not found');
