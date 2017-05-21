@@ -31,7 +31,7 @@
 			}
 		}
 
-		public function getViewContent($view,$data){
+		public function getViewContent($view,$data=null){
 			$controller = App::getController();
 			$folderView = strtolower(str_replace('Controller', '', $controller));
 			$rootDir = App::getConfig()['rootDir'];
@@ -49,8 +49,17 @@
 			}
 		}
 
-		public function renderPatial (){
+		public function renderPatial($view,$data=null){
+			$rootDir = App::getConfig()['rootDir'];
 
+			if( is_array($data) )
+				extract($data, EXTR_PREFIX_SAME, "data");
+			else
+				$data = $data;
+			$viewPath = $rootDir.'/app/views/'.$view.'.php';
+			if( file_exists($viewPath) ){
+				require($viewPath);
+			}
 		}
 	}
 ?>

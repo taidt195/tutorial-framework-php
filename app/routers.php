@@ -1,9 +1,10 @@
 <?php
-
+	use app\core\Controller;
 	Router::get('/home','HomeController@index');
 	
 	Router::get('/',function(){
-		echo ' hello';
+		$ct = new Controller;
+		$ct->render('index',['age' => 22, 'name' => 'tai']);
 	});
 
 	Router::get('/news',function(){
