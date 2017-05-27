@@ -1,12 +1,15 @@
 <?php
 	namespace app\core;
 	use \App;
+	use app\core\Registry;
 	
 	class Controller{
 		private $layout = null;
+		private $config;
 
 		public function __construct(){
-			$this->layout = App::getConfig()['layout'];
+			$this->config = Registry::getIntance()->config;
+			$this->layout = $this->config['layout'];
 		}
 
 		public function setLayout($layout){
@@ -20,7 +23,7 @@
 		}
 
 		public function render($view,$data=null){
-			$rootDir = App::getConfig()['rootDir'];
+			$rootDir = $this->config['rootDir'];
 
 			$content = $this->getViewContent($view,$data);
 			if( $this->layout != null ){
@@ -32,9 +35,9 @@
 		}
 
 		public function getViewContent($view,$data=null){
-			$controller = App::getController();
+			$controller = Registry::getIntance()->controller;
 			$folderView = strtolower(str_replace('Controller', '', $controller));
-			$rootDir = App::getConfig()['rootDir'];
+			$rootDir = $this->config['rootDir'];
 
 			if( is_array($data) )
 				extract($data, EXTR_PREFIX_SAME, "data");
@@ -50,7 +53,7 @@
 		}
 
 		public function renderPatial($view,$data=null){
-			$rootDir = App::getConfig()['rootDir'];
+			$rootDir = $this->config['rootDir'];
 
 			if( is_array($data) )
 				extract($data, EXTR_PREFIX_SAME, "data");

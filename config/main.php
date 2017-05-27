@@ -1,6 +1,6 @@
 <?php
 	return [
-		'basePath'	=> '/www/my-framework/public',
+		'basePath'	=> '',
 		'rootDir'	=> dirname(__DIR__),
 		'layout'	=> 'layouts/main',
 		'db'		=> [

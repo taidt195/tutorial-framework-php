@@ -1,44 +1,20 @@
 <?php
 	require_once(dirname(__FILE__).'/Autoload.php');
+	use app\core\Registry;
 	/**
 	* App
 	*/
 	class App
 	{
 		private $router;
-		private static $config;
-		private static $controller;
-		private static $action;
 
-		function __construct()
+		function __construct($config)
 		{
-			new Autoload(self::$config['rootDir']);
+			new Autoload($config['rootDir']);
 
-			$this->router = new Router(self::$config['basePath']);
-		}
+			$this->router = new Router($config['basePath']);
 
-		public static function setConfig($config){
-			self::$config = $config;
-		}
-
-		public static function getConfig(){
-			return self::$config;
-		}
-
-		public static function setController($controller){
-			self::$controller = $controller;
-		}
-
-		public static function getController(){
-			return self::$controller;
-		}
-
-		public static function setAction($action){
-			self::$action = $action;
-		}
-
-		public static function getAction(){
-			return self::$action;
+			Registry::getIntance()->config = $config;
 		}
 
 		public function run(){
