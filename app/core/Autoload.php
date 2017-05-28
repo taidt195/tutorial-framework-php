@@ -1,4 +1,5 @@
 <?php
+	use app\core\AppException;
 	class Autoload{
 		private $rootDir;
 
@@ -18,7 +19,7 @@
 			if( file_exists($filePath) )
 				require_once($filePath);
 			else
-				die("$class does not exsits");
+				throw new AppException("$class does not exsits");
 		}
 
 		private function autoLoadFile(){

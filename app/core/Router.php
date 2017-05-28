@@ -1,5 +1,6 @@
 <?php
 	use app\core\Registry;
+	use app\core\AppException;
 	/**
 	* Router
 	*/
@@ -120,10 +121,10 @@
 					Registry::getIntance()->action = $methodName;
 					call_user_func_array([$object,$methodName], $params);
 				}else{
-					die('Method "'.$methodName.'" not found');
+					throw new AppException('Method "'.$methodName.'" not found');
 				}
 			}else{
-				die('Class "'.$classNamespace.'" not found');
+				throw new AppException('Class "'.$classNamespace.'" not found');
 			}
 		}
 
