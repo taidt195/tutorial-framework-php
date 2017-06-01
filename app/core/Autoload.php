@@ -15,6 +15,7 @@
 
 			$fileName = end(explode('\\', $class));
 			$filePath = $this->rootDir.'\\'.strtolower(str_replace($fileName, '', $class)).$fileName.'.php';
+			$filePath = str_replace('\\', '/', $filePath);
 
 			if( file_exists($filePath) )
 				require_once($filePath);
