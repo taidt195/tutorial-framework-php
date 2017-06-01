@@ -1,7 +1,6 @@
 <?php
 	namespace app\controllers;
 	use app\core\Controller;
-	use \App;
 
 	/**
 	* HomeController
@@ -15,14 +14,10 @@
 		}
 
 		public function index(){
-			// echo 'home index';
 			$this->render('index',[
 				'ten'	=> 'tai',
 				'tuoi'	=> '22'
 			]);
-			// $this->redirect('http://google.com');
-			// echo App::getController();
-			// echo App::getAction();
 		}
 	}
 ?>

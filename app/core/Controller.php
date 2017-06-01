@@ -1,6 +1,5 @@
 <?php
 	namespace app\core;
-	use \App;
 	use app\core\Registry;
 	
 	class Controller{
